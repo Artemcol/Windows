@@ -1,9 +1,9 @@
 {
     "name": "Windows 10 on Docker",
-    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
     "forwardPorts": [8006],
-    "postCreateCommand": "docker run -d -p 8006:8006 --device=/dev/kvm --cap-add NET_ADMIN --stop-timeout 120 dockur/windows:10"
+    "postCreateCommand": "sudo docker run -d -p 8006:8006 --name windows10 --restart unless-stopped dockur/windows:10"
 }
