@@ -5,9 +5,9 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
     "hostRequirements": {
-        "cpus": 4,
+        "cpus": 2,
         "memory": "8gb",
-        "storage": "40gb"
+
     },
     "forwardPorts": [8006, 5901],
     "portsAttributes": {
