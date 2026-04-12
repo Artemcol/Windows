@@ -9,14 +9,18 @@
         "memory": "8gb",
         "storage": "40gb"
     },
-    "forwardPorts": [8006],
+    "forwardPorts": [8006, 5901],
     "portsAttributes": {
         "8006": {
-            "label": "Windows 10",
+            "label": "Windows 10 (Web)",
             "onAutoForward": "openBrowser"
+        },
+        "5901": {
+            "label": "Windows 10 (VNC)",
+            "onAutoForward": "notify"
         }
     },
-    "postCreateCommand": "sudo docker run -d -p 8006:8006 --name windows10 --restart unless-stopped -e VERSION=\"10\" -e RESOLUTION=\"1366x768\" dockurr/windows",
+    "postCreateCommand": "sudo docker run -d -p 8006:8006 -p 5901:5900 --name windows10 --restart unless-stopped -e VERSION=\"10\" -e RESOLUTION=\"1366x768\" -e ARGUMENTS=\"-vnc :1\" dockurr/windows",
     "shutdownAction": "stopContainer",
     "containerEnv": {
         "WIN_VERSION": "10",
