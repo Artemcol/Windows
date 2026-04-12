@@ -4,6 +4,22 @@
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "8gb",
+        "storage": "40gb"
+    },
     "forwardPorts": [8006],
-    "postCreateCommand": "sudo docker run -d -p 8006:8006 --name windows10 --restart unless-stopped dockur/windows:10"
+    "portsAttributes": {
+        "8006": {
+            "label": "Windows 10",
+            "onAutoForward": "openBrowser"
+        }
+    },
+    "postCreateCommand": "sudo docker run -d -p 8006:8006 --name windows10 --restart unless-stopped -e VERSION=\"10\" -e RESOLUTION=\"1366x768\" dockurr/windows",
+    "shutdownAction": "stopContainer",
+    "containerEnv": {
+        "WIN_VERSION": "10",
+        "WIN_RESOLUTION": "1366x768"
+    }
 }
