@@ -6,8 +6,7 @@
     },
     "hostRequirements": {
         "cpus": 2,
-        "memory": "8gb",
-
+        "memory": "8gb"
     },
     "forwardPorts": [8006, 5901],
     "portsAttributes": {
