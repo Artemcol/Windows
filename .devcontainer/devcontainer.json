@@ -4,15 +4,11 @@
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
-    "hostRequirements": {
-        "cpus": 4,
-        "memory": "8gb"
-    },
     "forwardPorts": [8006],
     "portsAttributes": {
         "8006": {
             "label": "Windows 10",
-            "onAutoForward": "openBrowser"
+            "onAutoForward": "openBrowser"вэ
         }
     },
     "onCreateCommand": "sudo apt-get update && sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils cpu-checker && sudo kvm-ok",
