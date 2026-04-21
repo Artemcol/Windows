@@ -8,7 +8,7 @@
     "portsAttributes": {
         "8006": {
             "label": "Windows 10",
-            "onAutoForward": "openBrowser"вэ
+            "onAutoForward": "openBrowser"
         }
     },
     "onCreateCommand": "sudo apt-get update && sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils cpu-checker && sudo kvm-ok",
