@@ -4,14 +4,17 @@ import json
 import zlib
 import bpy
 
-def import_prisma(filepath, output_path):
-    # Очищаем сцену Blender от куба и камеры
+def import_prisma():
+    # Имена файлов прописаны жестко, чтобы избежать ошибок консоли Blender
+    filepath = "Skybox Layer Sword.pobject"
+    output_path = "Skybox_Layer_Sword.obj"
+    
+    # Очищаем сцену Blender
     bpy.ops.wm.read_factory_settings(use_empty=True)
     
     with open(filepath, 'rb') as f:
         data = f.read()
         
-    # Распаковываем zlib сжатие pobject
     try:
         uncompressed = zlib.decompress(data).decode('utf-8')
     except Exception:
@@ -19,15 +22,12 @@ def import_prisma(filepath, output_path):
         
     parsed = json.loads(uncompressed)
     
-    # Извлекаем меш (вершины, полигоны, UV)
-    # Создаем базовую low-poly геометрию в Blender
     mesh = bpy.data.meshes.new(name="Skybox_Sword_Mesh")
     obj = bpy.data.objects.new("Skybox_Sword", mesh)
     
     col = bpy.context.scene.collection
     col.objects.link(obj)
     
-    # Чтение геометрии из JSON структуры Призмы
     verts = []
     faces = []
     
@@ -39,12 +39,10 @@ def import_prisma(filepath, output_path):
     mesh.from_pydata(verts, [], faces)
     mesh.update()
     
-    # Экспортируем в чистый .obj
+    # Экспортируем
     bpy.ops.wm.obj_export(filepath=output_path, export_selected=False)
-    print(f"--- SUCCESS: Model saved to {output_path} ---")
+    print("\n--- SUCCESS: Skybox_Layer_Sword.obj И .mtl УСПЕШНО СОЗДАНЫ! ---")
 
 if __name__ == "__main__":
-    # Получаем аргументы из консольной команды Blender
-    args = sys.argv[sys.argv.index("--") + 1:]
-    import_prisma(args[0], args[1])
-
+    import_prisma()
+    
